@@ -28,7 +28,7 @@
     "scripts": {
         "build": "rollup -c",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
+        "build-storybook": "storybook build -o build",
         "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
         "format:fix": "prettier --write . && eslint --fix . --ext .ts,.tsx",
         "version:upgrade": "npm version patch --git-tag-version false"
