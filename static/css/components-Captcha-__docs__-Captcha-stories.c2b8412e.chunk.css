@@ -1,0 +1,27 @@
+.captcha-reload-button {
+    height: 100%;
+    max-height: 45px;
+    width: 45px;
+    margin-left: 10px;
+}
+
+.captcha-container {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.captcha-main {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.captcha-text-control {
+    width: 100%;
+}
+
+
+/*# sourceMappingURL=components-Captcha-__docs__-Captcha-stories.c2b8412e.chunk.css.map*/
