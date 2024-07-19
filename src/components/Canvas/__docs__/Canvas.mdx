@@ -1,0 +1,62 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks";
+import * as CanvasStories from "./Canvas.stories";
+
+<Meta of={CanvasStories} />
+
+# Canvas
+
+Component designed to generate a captcha image with customizable properties such as text, background color, and dimensions.
+
+This component doesn't offer any kind of validation. It doesn't regenrate captcha automatically. It's just a visual representation of the given text. However, this component gives you a full flexibility and doesn't force to use any UI library.
+
+> **Note:** This component is crucial for enhancing security by providing a captcha challenge to user interactions.
+
+#### Example
+
+<Canvas of={CanvasStories.Default} />
+
+## Usage
+
+**Example.tsx**:
+
+```tsx
+import { Canvas } from "react-my-captcha";
+
+const Example = () => {
+    return (
+        <Canvas
+            captchaText="V2LOKcB" //this must be a random text
+            backgroundColor="#ffffff"
+            width={200}
+            height={50}
+            minPoints={10}
+            maxPoints={20}
+            minLines={3}
+            maxLines={5}
+            fontFamilies={["Arial", "Verdana", "Courier New", "Georgia"]}
+            minFontSize={20}
+            maxFontSize={30}
+        />
+    );
+};
+
+export default Example;
+```
+
+> **Note:** Customize the `Canvas` component properties as needed to fit the design and security requirements of your application.
+
+## Custom styling
+
+The `Canvas` component uses a CSS class named `captcha-canvas` for the `<canvas>` element. You can personalize the appearance of the captcha canvas by defining custom styles for this class in your CSS or SCSS files.
+
+For example, to add a border, you could write:
+
+```css
+.captcha-canvas {
+    border: 2px solid #000;
+}
+```
+
+# Arguments
+
+<ArgTypes of={CanvasStories.Default} />

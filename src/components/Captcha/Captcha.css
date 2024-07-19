@@ -1,0 +1,15 @@
+.captcha-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.captcha-main {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.captcha-text-control {
+    width: 100%;
+}

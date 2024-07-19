@@ -1,0 +1,228 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks";
+import * as CaptchaStories from "./Captcha.stories";
+
+<Meta of={CaptchaStories} />
+
+# Canvas
+
+Component designed to generate a captcha image with customizable properties such as text, background color, and dimensions.
+
+This component doesn't offer any kind of validation. It doesn't regenerate captcha automatically. It's just a visual representation of the given text. However, this component gives you a full flexibility and doesn't force to use any UI library.
+
+> **Note:** This component is crucial for enhancing security by providing a captcha challenge to user interactions.
+
+<Canvas of={CaptchaStories.Default} />
+
+## Usage
+
+### Standalone usage
+
+You can use the `Captcha` component as a standalone element in your application. It provides handlers that you can catch validity state of the captcha text given by a user.
+
+#### Using built-in validation method
+
+You may use `textInput` prop to pass a custom input component to handle the user's input. Then you may use the `onCaptchaValidate` handler to get updated always, when validation performs. It means - all the time when user changes a content of input text. The handler takes just a single boolean parameter, that informs if the given text is valid or not.
+
+In this case `textInput` prop is required.
+
+**Example.tsx**:
+
+```tsx
+import { useState } from "react";
+import { Captcha } from "react-my-captcha";
+
+const Example = () => {
+    const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+    return (
+        <form className="form-group">
+            <input className="form-control my-3" placeholder="Email" />
+            <Captcha
+                onCaptchaValidate={setIsCaptchaValid}
+                backgroundColor="#ffffff"
+                width={200}
+                height={50}
+                minPoints={10}
+                maxPoints={20}
+                minLines={3}
+                maxLines={5}
+                fontFamilies={["Arial", "Verdana", "Courier New", "Georgia"]}
+                minFontSize={20}
+                maxFontSize={30}
+                textInput={
+                    <input
+                        className="form-control mb-3"
+                        placeholder="Captcha"
+                    />
+                }
+            />
+            {!isCaptchaValid && (
+                <p className="text-error">Captcha is invalid</p>
+            )}
+            <button type="submit" className="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    );
+};
+
+export default Example;
+```
+
+#### Using own validation method
+
+You may use `onCaptchaReload` handler to get updated always, when the captcha image is reloaded. The handler takes just a single string parameter containing a new correct string. Then you can compare it on your own with the value typed by a user in the input text.
+
+In this case `textInput` prop is not required, you may place it whatever you want.
+
+**Example.tsx**:
+
+```tsx
+import { useState } from "react";
+import { Captcha } from "react-my-captcha";
+
+const Example = () => {
+    const [isCaptchaValid, setIsCaptchaValid] = useState(true);
+    const [correctCaptchaText, setCorrectCaptchaText] = useState("");
+    const [realCaptchaText, setRealCaptchaText] = useState("");
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        if (correctCaptchaText === realCaptchaText) {
+            setIsCaptchaValid(true);
+        } else {
+            setIsCaptchaValid(false);
+        }
+    };
+    return (
+        <form className="form-group" onSubmit={submitHandler}>
+            <input className="form-control my-3" placeholder="Email" />
+            <Captcha
+                onCaptchaReload={setCorrectCaptchaText}
+                onCaptchaValidate={setIsCaptchaValid}
+                backgroundColor="#ffffff"
+                width={200}
+                height={50}
+                minPoints={10}
+                maxPoints={20}
+                minLines={3}
+                maxLines={5}
+                fontFamilies={["Arial", "Verdana", "Courier New", "Georgia"]}
+                minFontSize={20}
+                maxFontSize={30}
+                textInput={
+                    <input
+                        className="form-control mb-3"
+                        placeholder="Captcha"
+                        onChange={(e) => setRealCaptchaText(e.target.value)}
+                        value={realCaptchaText}
+                    />
+                }
+            />
+            {!isCaptchaValid && (
+                <p className="text-error">Captcha is invalid</p>
+            )}
+            <button type="submit" className="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    );
+};
+
+export default Example;
+```
+
+### Using `useCaptcha` hook
+
+The library includes a `useCaptcha` hook that simplifies the usage of the Captcha component. The hook provides a `captchaText` value and a `reloadCaptcha` function to generate a new captcha text.
+
+It is described with all details in a separate section.
+
+The hook can help eg. when you want to use `react-hook-form` library to handle the form.
+
+## Customization
+
+Each example below showcases different configurations of the Captcha component, illustrating its flexibility and customization options.
+
+### Different Background
+
+<Canvas of={CaptchaStories.DifferentBackground} />
+
+This story demonstrates how changing the `backgroundColor` prop affects the appearance of the Captcha, showcasing a light gray background as an example.
+
+### Different Size
+
+<Canvas of={CaptchaStories.DifferentSize} />
+
+Illustrates the Captcha component with altered `width` and `height` properties, showing how the component can be adjusted to fit different size requirements.
+
+### Different Points
+
+<Canvas of={CaptchaStories.DifferentPoints} />
+
+Shows the effect of modifying the `minPoints` and `maxPoints` props, which control the density of random points within the Captcha, making it more complex.
+
+### Different Lines
+
+<Canvas of={CaptchaStories.DifferentLines} />
+
+This example varies the `minLines` and `maxLines` props to demonstrate the Captcha with different numbers of lines, affecting its complexity and style.
+
+### Different Font Families
+
+<Canvas of={CaptchaStories.DifferentFontFamilies} />
+
+Highlights the flexibility in changing the `fontFamilies` prop, showcasing how different fonts can alter the visual style of the Captcha text.
+
+### Different Font Sizes
+
+<Canvas of={CaptchaStories.DifferentFontSizes} />
+
+Displays the Captcha component with a range of `minFontSize` and `maxFontSize`, illustrating how font size variation impacts the readability and style of the Captcha text.
+
+## Custom styling
+
+The `Captcha` component uses several CSS classes to style its elements. You can customize the appearance of these elements by defining custom styles for these classes in your CSS or SCSS files.
+
+### `.captcha-canvas`
+
+This class is applied to the `<canvas>` element used to draw the captcha. To add a border, you could write:
+
+```css
+.captcha-canvas {
+    border: 2px solid #000;
+}
+```
+
+### `.captcha-container`
+
+This class wraps the entire Captcha component, including the canvas and input elements. It's set to display its children in a column layout. To add a border to the whole container, you could write:
+
+```css
+.captcha-container {
+    border: 2px solid #000;
+}
+```
+
+### `.captcha-main`
+
+This class is applied to the container that holds the captcha canvas and the refresh button. It uses a row layout to display its children. To increase the margin between the captcha canvas and the refresh button, you could write:
+
+```css
+.captcha-main {
+    margin-bottom: 10px;
+}
+```
+
+### `.captcha-text-control`
+
+This class is applied to the container of the text input element where users type the captcha text. To adjust the width of the input element, you could write:
+
+```css
+.captcha-text-control {
+    width: 100%;
+}
+```
+
+# Arguments
+
+<ArgTypes of={CaptchaStories.Default} />
