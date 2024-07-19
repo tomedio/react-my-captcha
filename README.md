@@ -24,13 +24,13 @@ After installation, you can import the `Captcha` component or the `useCaptcha` h
 
 ### Publishing Library to npm
 
-1. **Build Your Library**: Run the build script to compile your library:
+1. **Build Your Library**: Run the build script to compile the newest version of the library:
 
 ```bash
 npm run build
 ```
 
-2. **Publish to npm**: Navigate to your project directory in the terminal and run:
+2. **Publish to npm**: Navigate to the project directory in the terminal and run:
 
 ```bash
 npm publish --access public
