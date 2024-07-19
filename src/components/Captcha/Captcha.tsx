@@ -2,8 +2,8 @@ import React, { useState, useEffect, DetailedReactHTMLElement } from "react";
 
 import { CaptchaProps } from "./Captcha.types";
 import generateRandomText from "../../utils/generateRandomText";
-import {Canvas} from "../Canvas";
-import DefaultButton from "../DefaultButton/DefaultButton";
+import { Canvas } from "../Canvas";
+import { DefaultButton } from "../DefaultButton";
 import "./Captcha.css";
 
 export const Captcha = (props: CaptchaProps) => {

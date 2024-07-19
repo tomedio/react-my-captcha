@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import useCaptcha from "../../../hooks/useCaptcha";
-import Captcha from "../Captcha";
+import { useCaptcha } from "../../../hooks";
+import { Captcha } from "../Captcha";
 import { CaptchaProps } from "../Captcha.types";
 
 interface CaptchaExampleProps extends CaptchaProps {}

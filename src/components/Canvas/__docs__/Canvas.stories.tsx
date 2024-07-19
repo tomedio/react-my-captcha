@@ -1,5 +1,5 @@
 import { StoryObj, Meta } from "@storybook/react";
-import Canvas from "../Canvas";
+import { Canvas } from "../Canvas";
 import { CanvasProps } from "../Canvas.types";
 
 export default {
