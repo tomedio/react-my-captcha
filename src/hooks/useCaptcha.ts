@@ -20,5 +20,3 @@ export const useCaptcha = (): UseCaptchaReturn => {
         },
     };
 };
-
-export default useCaptcha;

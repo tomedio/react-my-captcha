@@ -61,5 +61,3 @@ export const Canvas = (props: CanvasProps) => {
 };
 
 Canvas.displayName = "Canvas";
-
-export default Canvas;
