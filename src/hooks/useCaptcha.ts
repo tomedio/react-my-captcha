@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UseCaptchaReturn } from "./useCaptcha.types";
 
-const useCaptcha = (): UseCaptchaReturn => {
+export const useCaptcha = (): UseCaptchaReturn => {
     const [isCaptchaValid, setIsCaptchaValid] = useState<boolean>(true);
     const [captchaText, setCaptchaText] = useState<string>("");
     return {

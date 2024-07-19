@@ -5,7 +5,7 @@ import drawTextRandomly from "../../utils/canvas/drawTextRandomly";
 import drawRandomPoints from "../../utils/canvas/drawRandomPoints";
 import drawRandomLines from "../../utils/canvas/drawRandomLines";
 
-const Canvas = (props: CanvasProps) => {
+export const Canvas = (props: CanvasProps) => {
     const {
         captchaText,
         backgroundColor = "#ffffff",

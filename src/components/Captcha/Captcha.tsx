@@ -6,7 +6,7 @@ import Canvas from "../Canvas/Canvas";
 import DefaultButton from "../DefaultButton/DefaultButton";
 import "./Captcha.css";
 
-const Captcha = (props: CaptchaProps) => {
+export const Captcha = (props: CaptchaProps) => {
     const {
         onCaptchaRefresh,
         onCaptchaValidate,
